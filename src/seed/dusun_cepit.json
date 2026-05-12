@@ -1,0 +1,101 @@
+{
+ 	"$schema": "https://emdashcms.com/seed.schema.json",
+ 	"version": "2",
+ 	"meta": {
+ 		"name": "Dusun Cepit Seed",
+ 		"description": "Schema for UMKM, News, Feedback, Profile and Site Settings"
+ 	},
+ 	"collections": [
+ 		{
+ 			"slug": "products",
+ 			"label": "Produk UMKM",
+ 			"labelSingular": "Produk",
+ 			"supports": ["search"],
+ 			"fields": [
+ 				{ "slug": "name", "label": "Nama Produk", "type": "string", "required": true, "searchable": true },
+ 				{ "slug": "price", "label": "Harga", "type": "number", "required": true },
+ 				{ "slug": "seller", "label": "Penjual / Nama UMKM", "type": "string", "required": true },
+ 				{ "slug": "category", "label": "Kategori", "type": "string", "required": true },
+ 				{ "slug": "image", "label": "Gambar Produk", "type": "image" },
+ 				{ "slug": "phone", "label": "Nomor WhatsApp", "type": "string", "required": true },
+ 				{ "slug": "product_status", "label": "Status", "type": "string" }
+ 			]
+ 		},
+ 		{
+ 			"slug": "news",
+ 			"label": "Berita Dusun",
+ 			"labelSingular": "Berita",
+ 			"supports": ["search", "drafts"],
+ 			"fields": [
+ 				{ "slug": "title", "label": "Judul Berita", "type": "string", "required": true, "searchable": true },
+ 				{ "slug": "content", "label": "Konten", "type": "portableText", "searchable": true },
+ 				{ "slug": "excerpt", "label": "Ringkasan", "type": "text" },
+ 				{ "slug": "image", "label": "Gambar Utama", "type": "image" },
+ 				{ "slug": "category", "label": "Kategori", "type": "string" },
+ 				{ "slug": "date", "label": "Tanggal", "type": "datetime" }
+ 			]
+ 		},
+ 		{
+ 			"slug": "feedback",
+ 			"label": "Aduan & Saran",
+ 			"labelSingular": "Feedback",
+ 			"supports": [],
+ 			"fields": [
+ 				{ "slug": "send_name", "label": "Nama Pengirim", "type": "string", "required": true },
+ 				{ "slug": "send_phone", "label": "HP / WhatsApp", "type": "string" },
+ 				{ "slug": "feedback_type", "label": "Jenis Feedback", "type": "string", "required": true },
+ 				{ "slug": "message", "label": "Pesan", "type": "text", "required": true },
+ 				{ "slug": "submission_date", "label": "Dikirim pada", "type": "datetime" }
+ 			]
+ 		},
+ 		{
+ 			"slug": "profile",
+ 			"label": "Profil Dusun",
+ 			"labelSingular": "Profil",
+ 			"supports": [],
+ 			"isSingleton": true,
+ 			"fields": [
+ 				{ "slug": "history_title", "label": "Judul Sejarah", "type": "string" },
+ 				{ "slug": "history_paragraph_1", "label": "Sejarah Paragraf 1", "type": "text" },
+ 				{ "slug": "history_paragraph_2", "label": "Sejarah Paragraf 2", "type": "text" },
+ 				{ "slug": "formation_year", "label": "Tahun Pembentukan", "type": "number" },
+ 				{ "slug": "initial_area", "label": "Luas Awal (Ha)", "type": "number" },
+ 				{ "slug": "quote", "label": "Quote Sesepuh", "type": "string" },
+ 				{ "slug": "quote_author", "label": "Penulis Quote", "type": "string" },
+ 				{ "slug": "vision", "label": "Visi", "type": "text" },
+ 				{ "slug": "misi_1_title", "label": "Misi 1 - Judul", "type": "string" },
+ 				{ "slug": "misi_1_desc", "label": "Misi 1 - Deskripsi", "type": "text" },
+ 				{ "slug": "misi_2_title", "label": "Misi 2 - Judul", "type": "string" },
+ 				{ "slug": "misi_2_desc", "label": "Misi 2 - Deskripsi", "type": "text" },
+ 				{ "slug": "misi_3_title", "label": "Misi 3 - Judul", "type": "string" },
+ 				{ "slug": "misi_3_desc", "label": "Misi 3 - Deskripsi", "type": "text" },
+ 				{ "slug": "misi_4_title", "label": "Misi 1.4 - Judul", "type": "string" },
+ 				{ "slug": "misi_4_desc", "label": "Misi 1.4 - Deskripsi", "type": "text" },
+ 				{ "slug": "head_village_name", "label": "Nama Kepala Dusun", "type": "string" },
+ 				{ "slug": "staff_1_name", "label": "Staff 1 - Nama", "type": "string" },
+ 				{ "slug": "staff_1_role", "label": "Staff 1 - Jabatan", "type": "string" },
+ 				{ "slug": "staff_2_name", "label": "Staff 2 - Nama", "type": "string" },
+ 				{ "slug": "staff_2_role", "label": "Staff 2 - Jabatan", "type": "string" },
+ 				{ "slug": "hero_image", "label": "Gambar Hero", "type": "image" },
+ 				{ "slug": "history_image", "label": "Gambar Sejarah", "type": "image" }
+ 			]
+ 		},
+ 		{
+ 			"slug": "site_settings",
+ 			"label": "Pengaturan Situs",
+ 			"labelSingular": "Pengaturan",
+ 			"supports": [],
+ 			"isSingleton": true,
+ 			"fields": [
+ 				{ "slug": "description", "label": "Deskripsi Singkat", "type": "text" },
+ 				{ "slug": "address", "label": "Alamat", "type": "string" },
+ 				{ "slug": "email", "label": "Email", "type": "string" },
+ 				{ "slug": "phone", "label": "Telepon", "type": "string" },
+ 				{ "slug": "population", "label": "Populasi", "type": "number" },
+ 				{ "slug": "umkm_partners", "label": "Mitra UMKM", "type": "number" },
+ 				{ "slug": "products_count", "label": "Jumlah Produk", "type": "number" },
+ 				{ "slug": "activities_count", "label": "Jumlah Kegiatan", "type": "number" }
+ 			]
+ 		}
+ 	]
+ }

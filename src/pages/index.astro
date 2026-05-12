@@ -1,0 +1,21 @@
+---
+import App from '../App.tsx';
+import '../index.css';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Portal digital resmi Dusun Cepit — temukan produk UMKM lokal, berita komunitas, dan layanan warga." />
+		<meta property="og:title" content="Dusun Cepit Digital" />
+		<meta property="og:description" content="Portal digital resmi Dusun Cepit — temukan produk UMKM lokal, berita komunitas, dan layanan warga." />
+		<meta property="og:type" content="website" />
+		<title>Dusun Cepit Digital</title>
+	</head>
+	<body>
+		<App client:load />
+	</body>
+</html>

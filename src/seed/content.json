@@ -1,0 +1,59 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"content": {
+		"products": [
+			{
+				"id": "prod_01",
+				"slug": "set-anyaman-bambu-premium",
+				"data": {
+					"name": "Set Anyaman Bambu Premium",
+					"category": "Kerajinan",
+					"price": 125000,
+					"seller": "Pengrajin Barokah",
+					"product_status": "Tersedia",
+					"image": { "url": "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&q=80&w=800" },
+					"phone": "6281234567890"
+				}
+			},
+			{
+				"id": "prod_02",
+				"slug": "kopi-robusta-cepit-250g",
+				"data": {
+					"name": "Kopi Robusta Cepit 250g",
+					"category": "Kuliner",
+					"price": 45000,
+					"seller": "Kopi Tani Sejahtera",
+					"product_status": "Tersedia",
+					"image": { "url": "https://images.unsplash.com/photo-1559056191-4917a2125f37?auto=format&fit=crop&q=80&w=800" },
+					"phone": "6281234567891"
+				}
+			}
+		],
+		"news": [
+			{
+				"id": "news_01",
+				"slug": "revitalisasi-balai-dusun",
+				"data": {
+					"title": "Revitalisasi Balai Dusun: Ruang Kolaborasi Baru untuk Kreativitas Warga",
+					"category": "Sorotan Utama",
+					"date": "2024-06-15T11:00:00Z",
+					"image": { "url": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=800" }
+				}
+			}
+		],
+		"feedback": [
+			{
+				"id": "fb_01",
+				"slug": "feedback-1",
+				"data": {
+					"send_name": "Anto Wijaya",
+					"send_phone": "08123456789",
+					"feedback_type": "saran",
+					"message": "Mohon perbaikan lampu jalan di RT 04.",
+					"submission_date": "2024-06-20T14:00:00Z"
+				}
+			}
+		]
+	}
+}

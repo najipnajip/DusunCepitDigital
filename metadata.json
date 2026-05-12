@@ -1,0 +1,7 @@
+{
+  "name": "Desa Cepit Digital",
+  "description": "Platform interaktif Desa Cepit untuk direktori UMKM dan kabar warga.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
