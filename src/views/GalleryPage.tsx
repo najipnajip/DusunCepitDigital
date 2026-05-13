@@ -88,10 +88,10 @@ const GalleryPage = () => {
               <Camera className="w-4 h-4" />
               Dokumentasi Visual
             </div>
-            <h1 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight">
               Galeri <span className="text-emerald-300">Dusun Cepit</span>
             </h1>
-            <p className="text-emerald-200 text-lg max-w-2xl mx-auto">
+            <p className="text-emerald-200 text-base sm:text-lg max-w-2xl mx-auto">
               Rekam jejak kegiatan, pembangunan, dan kehidupan masyarakat Dusun Cepit.
             </p>
           </motion.div>

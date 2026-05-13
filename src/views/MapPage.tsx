@@ -27,7 +27,7 @@ const MapPage = () => {
             <MapPin className="w-3.5 h-3.5" />
             Lokasi Dusun
           </div>
-          <h1 className="text-4xl font-black text-emerald-900 mb-3">Peta Lokasi Dusun Cepit</h1>
+          <h1 className="text-3xl sm:text-4xl font-black text-emerald-900 mb-3">Peta Lokasi Dusun Cepit</h1>
           <p className="text-slate-600 max-w-2xl leading-relaxed">
             Pilih tampilan peta interaktif untuk navigasi langsung, atau lihat infografis peta wilayah dusun.
           </p>

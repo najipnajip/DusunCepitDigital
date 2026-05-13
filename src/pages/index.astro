@@ -1,19 +1,114 @@
 ---
 import App from '../App.tsx';
 import '../index.css';
+
+const SITE_URL = 'https://dusuncepit.vercel.app';
+const SITE_NAME = 'Dusun Cepit Digital';
+const SITE_DESCRIPTION = 'Portal digital resmi Dusun Cepit, Bokoharjo, Prambanan, Sleman, DIY — informasi warga, kabar terkini, peta lokasi, dan layanan aspirasi masyarakat.';
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "GovernmentOrganization",
+  "name": "Pemerintah Dusun Cepit",
+  "alternateName": "Dusun Cepit Digital",
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/logo.png`,
+  "description": SITE_DESCRIPTION,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Cepit, Bokoharjo",
+    "addressLocality": "Prambanan",
+    "addressRegion": "Kabupaten Sleman, Daerah Istimewa Yogyakarta",
+    "postalCode": "55572",
+    "addressCountry": "ID"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -7.781,
+    "longitude": 110.484
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"],
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "08:00",
+      "closes": "11:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "12:00"
+    }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+62-274-1234567",
+    "contactType": "customer service",
+    "areaServed": "ID",
+    "availableLanguage": "Indonesian"
+  },
+  "sameAs": []
+});
 ---
 
-<html lang="en">
+<html lang="id" dir="ltr">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="apple-touch-icon" href="/logo.png" />
+
+		<!-- Primary SEO -->
+		<title>{SITE_NAME} — Portal Resmi Dusun Cepit, Prambanan, Sleman</title>
+		<meta name="description" content={SITE_DESCRIPTION} />
+		<meta name="keywords" content="Dusun Cepit, Bokoharjo, Prambanan, Sleman, Yogyakarta, portal desa, berita dusun, UMKM lokal, peta lokasi dusun, wisata Prambanan" />
+		<meta name="author" content="Tim Multimedia Dusun Cepit" />
+		<meta name="robots" content="index, follow" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Portal digital resmi Dusun Cepit — temukan produk UMKM lokal, berita komunitas, dan layanan warga." />
-		<meta property="og:title" content="Dusun Cepit Digital" />
-		<meta property="og:description" content="Portal digital resmi Dusun Cepit — temukan produk UMKM lokal, berita komunitas, dan layanan warga." />
+		<link rel="canonical" href={SITE_URL} />
+
+		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<title>Dusun Cepit Digital</title>
+		<meta property="og:url" content={SITE_URL} />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:title" content={`${SITE_NAME} — Portal Resmi Dusun Cepit`} />
+		<meta property="og:description" content={SITE_DESCRIPTION} />
+		<meta property="og:image" content={OG_IMAGE} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Dusun Cepit Digital — Portal Resmi" />
+		<meta property="og:locale" content="id_ID" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={`${SITE_NAME} — Portal Resmi Dusun Cepit`} />
+		<meta name="twitter:description" content={SITE_DESCRIPTION} />
+		<meta name="twitter:image" content={OG_IMAGE} />
+
+		<!-- Geo Tags -->
+		<meta name="geo.region" content="ID-YO" />
+		<meta name="geo.placename" content="Dusun Cepit, Prambanan, Sleman" />
+		<meta name="geo.position" content="-7.781;110.484" />
+		<meta name="ICBM" content="-7.781, 110.484" />
+
+		<!-- Performance -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={jsonLd} />
 	</head>
 	<body>
 		<App client:load />

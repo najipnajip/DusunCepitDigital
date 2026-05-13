@@ -80,9 +80,9 @@ const ProfilePage = () => {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-white text-center">
-          <span className="text-emerald-400 font-black uppercase tracking-widest text-sm mb-4 block">Tentang Kami</span>
-          <h1 className="text-5xl md:text-7xl font-black mb-6">Profil <span className="text-emerald-400">Dusun Cepit</span></h1>
-          <p className="text-xl text-emerald-50/80 max-w-3xl mx-auto leading-relaxed">
+          <span className="text-emerald-400 font-black uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4 block">Tentang Kami</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6">Profil <span className="text-emerald-400">Dusun Cepit</span></h1>
+          <p className="text-base sm:text-xl text-emerald-50/80 max-w-3xl mx-auto leading-relaxed">
             Mengenal lebih dekat sejarah, visi misi, dan struktur pemerintahan Dusun Cepit yang modern dan mandiri.
           </p>
         </div>

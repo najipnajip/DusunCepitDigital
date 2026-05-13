@@ -78,10 +78,10 @@ const ContactPage = () => {
               <Navigation className="w-4 h-4" />
               Hubungi Kami
             </div>
-            <h1 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">
-              Kontak & <span className="text-emerald-300">Lokasi</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight">
+              Kontak &amp; <span className="text-emerald-300">Lokasi</span>
             </h1>
-            <p className="text-emerald-200 text-lg max-w-2xl mx-auto">
+            <p className="text-emerald-200 text-base sm:text-lg max-w-2xl mx-auto">
               Temukan kami secara langsung atau hubungi melalui saluran komunikasi yang tersedia.
             </p>
           </motion.div>

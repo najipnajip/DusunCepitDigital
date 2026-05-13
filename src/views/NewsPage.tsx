@@ -58,6 +58,8 @@ const NewsPage = () => {
     exit={{ opacity: 0 }}
     className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
   >
+    {/* Page-level heading (visually hidden for SEO, visible semantics) */}
+    <h1 className="sr-only">Kabar Warga — Berita &amp; Informasi Dusun Cepit</h1>
     {/* Featured News */}
     <section className="relative mb-20 rounded-[2.5rem] overflow-hidden group shadow-2xl">
       <div className="relative h-[500px] w-full">
@@ -72,9 +74,9 @@ const NewsPage = () => {
           <span className="bg-emerald-500 px-4 py-1.5 rounded-full text-xs font-black text-emerald-950 uppercase tracking-widest mb-6 inline-block">
             {newsItems[0].category}
           </span>
-          <h1 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
             {newsItems[0].title}
-          </h1>
+          </h2>
           <p className="text-emerald-50/80 text-base mb-8 line-clamp-2">
             {newsItems[0].excerpt}
           </p>
@@ -98,7 +100,7 @@ const NewsPage = () => {
     <div className="flex flex-col lg:flex-row gap-16">
       <div className="flex-1">
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-black text-emerald-900">Terbaru di Dusun</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-emerald-900">Terbaru di Dusun</h2>
           <div className="flex gap-2">
             <button className="px-5 py-2.5 bg-emerald-800 text-white rounded-xl text-xs font-bold shadow-lg shadow-emerald-800/20">Terbaru</button>
           </div>
@@ -120,7 +122,7 @@ const NewsPage = () => {
                   <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg text-xs font-bold uppercase">{news.category}</span>
                   <span className="text-xs text-slate-500 font-medium">{news.date}</span>
                 </div>
-                <h3 className="text-xl font-bold text-emerald-900 mb-4 group-hover:text-emerald-600 transition-colors leading-snug">
+                <h3 className="text-lg sm:text-xl font-bold text-emerald-900 mb-3 sm:mb-4 group-hover:text-emerald-600 transition-colors leading-snug">
                   {news.title}
                 </h3>
                 <p className="text-slate-500 text-sm mb-8 line-clamp-2 leading-relaxed">
