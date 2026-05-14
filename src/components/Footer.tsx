@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
   MapPin,
-  Mail,
   Instagram,
   Globe,
-  ShieldCheck,
-  FileText,
-  Accessibility,
   Home,
   Newspaper,
   Image,
   Navigation,
   MessageSquare,
 } from 'lucide-react';
-import { SiteSettings } from '../types';
+import { SiteSettings, Page } from '../types';
 
 const FALLBACK_SETTINGS: SiteSettings = {
   description: 'Membangun jembatan digital antara pemerintah, warga, dan pengusaha lokal untuk masa depan yang lebih sejahtera dan terhubung.',
@@ -26,14 +22,19 @@ const FALLBACK_SETTINGS: SiteSettings = {
   activitiesCount: 12,
 };
 
-const QUICK_LINKS = [
-  { label: 'Beranda', icon: Home, href: '#' },
-  { label: 'Profil Dusun', icon: Globe, href: '#' },
-  { label: 'Peta Lokasi', icon: Navigation, href: '#' },
-  { label: 'Kabar Warga', icon: Newspaper, href: '#' },
-  { label: 'Galeri', icon: Image, href: '#' },
-  { label: 'Kontak', icon: MessageSquare, href: '#' },
+const QUICK_LINKS: { label: string; icon: React.ElementType; page: Page }[] = [
+  { label: 'Beranda', icon: Home, page: 'home' },
+  { label: 'Profil Dusun', icon: Globe, page: 'profile' },
+  { label: 'Peta Lokasi', icon: Navigation, page: 'map' },
+  { label: 'Kabar Warga', icon: Newspaper, page: 'news' },
+  { label: 'Galeri', icon: Image, page: 'gallery' },
+  { label: 'Kontak', icon: MessageSquare, page: 'contact' },
 ];
+
+const navigateTo = (page: Page) => {
+  window.dispatchEvent(new CustomEvent('navigate', { detail: page }));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 const Footer = () => {
   const [settings, setSettings] = useState<SiteSettings>(FALLBACK_SETTINGS);
@@ -70,11 +71,13 @@ const Footer = () => {
                 <Globe className="w-4 h-4" />
               </a>
               <a
-                href={`mailto:${settings.email}`}
-                aria-label="Email Dusun Cepit"
-                className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-emerald-800 hover:text-white transition-all text-slate-400 min-h-0"
+                href="https://instagram.com/tunas_mekar15"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram Dusun Cepit"
+                className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-pink-700 hover:text-white transition-all text-slate-400 min-h-0"
               >
-                <Mail className="w-4 h-4" />
+                <Instagram className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -85,13 +88,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-emerald-400 transition-colors group"
+                  <button
+                    onClick={() => navigateTo(link.page)}
+                    className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-emerald-400 transition-colors group min-h-0 w-full text-left"
                   >
                     <link.icon className="w-3.5 h-3.5 text-slate-600 group-hover:text-emerald-500 transition-colors shrink-0" />
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -161,27 +164,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-500 text-center sm:text-left">
+        <div className="flex items-center justify-center">
+          <p className="text-xs text-slate-500 text-center">
             &copy; {new Date().getFullYear()} Pemerintah Dusun Cepit &mdash; Dikelola oleh Tim Multimedia Dusun
           </p>
-          <div className="flex items-center gap-4 text-xs font-semibold">
-            <a href="#" className="text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 min-h-0">
-              <ShieldCheck className="w-3.5 h-3.5" /> Privasi
-            </a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 min-h-0">
-              <FileText className="w-3.5 h-3.5" /> Keamanan
-            </a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 min-h-0">
-              <Accessibility className="w-3.5 h-3.5" /> Aksesibilitas
-            </a>
-            <a
-              href="/admin"
-              className="text-emerald-500 hover:text-emerald-300 transition-colors flex items-center gap-1.5 min-h-0"
-            >
-              <ShieldCheck className="w-3.5 h-3.5" /> Admin
-            </a>
-          </div>
         </div>
       </div>
     </footer>

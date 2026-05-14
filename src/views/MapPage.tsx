@@ -9,6 +9,7 @@ const MapPage = () => {
   const landmarks = [
     { icon: MapPin, label: 'Masjid Al-Amin', desc: 'Rumah ibadah warga wilayah utara dusun' },
     { icon: MapPin, label: 'Masjid Istiqomah', desc: 'Rumah ibadah warga wilayah selatan dusun' },
+    { icon: ShieldAlert, label: 'Pos Ronda RT 01', desc: 'Pos keamanan lingkungan RT 02' },
     { icon: ShieldAlert, label: 'Pos Ronda RT 02', desc: 'Pos keamanan lingkungan RT 02' },
     { icon: ShieldAlert, label: 'Pos Ronda RT 03 & 04', desc: 'Pos keamanan lingkungan RT 03 dan 04' },
     { icon: School, label: 'Joglo PAUD', desc: 'Pendidikan anak usia dini warga Dusun Cepit' },
@@ -43,8 +44,8 @@ const MapPage = () => {
           <button
             onClick={() => setViewMode('interactive')}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'interactive'
-                ? 'bg-white text-emerald-900 shadow-sm'
-                : 'text-slate-500 hover:text-emerald-700'
+              ? 'bg-white text-emerald-900 shadow-sm'
+              : 'text-slate-500 hover:text-emerald-700'
               }`}
           >
             <Globe className="w-4 h-4" />
@@ -53,8 +54,8 @@ const MapPage = () => {
           <button
             onClick={() => setViewMode('infographic')}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'infographic'
-                ? 'bg-white text-emerald-900 shadow-sm'
-                : 'text-slate-500 hover:text-emerald-700'
+              ? 'bg-white text-emerald-900 shadow-sm'
+              : 'text-slate-500 hover:text-emerald-700'
               }`}
           >
             <ImageIcon className="w-4 h-4" />
