@@ -2,9 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import {
   MapPin,
-  Phone,
-  Mail,
-  MessageCircle,
+  Instagram,
   Clock,
   Navigation,
   ExternalLink,
@@ -19,28 +17,28 @@ const CONTACT_INFO = [
     color: 'emerald',
   },
   {
-    icon: Phone,
-    label: 'Telepon',
-    value: '(0274) 123-4567',
-    subtext: 'Senin – Jumat, 08.00 – 15.00 WIB',
-    color: 'blue',
-    href: 'tel:02741234567',
+    icon: Instagram,
+    label: 'Instagram',
+    value: '@tunas_mekar15',
+    subtext: 'KWT Tunas Mekar Dusun Cepit',
+    color: 'rose',
+    href: 'https://instagram.com/tunas_mekar15',
   },
   {
-    icon: MessageCircle,
-    label: 'WhatsApp',
-    value: '0812-3456-7890',
-    subtext: 'Respon cepat via WhatsApp',
-    color: 'green',
-    href: 'https://wa.me/6281234567890',
+    icon: Instagram,
+    label: 'Instagram',
+    value: '@mudamudicepit016',
+    subtext: 'Karang Taruna Dusun Cepit',
+    color: 'pink',
+    href: 'https://instagram.com/mudamudicepit016',
   },
   {
-    icon: Mail,
-    label: 'Email',
-    value: 'admin@dusuncepit.go.id',
-    subtext: 'Untuk keperluan resmi & berkas',
+    icon: Instagram,
+    label: 'Instagram',
+    value: '@merakitcepit',
+    subtext: 'Kelompok Kreatif Dusun Cepit',
     color: 'purple',
-    href: 'mailto:admin@dusuncepit.go.id',
+    href: 'https://instagram.com/merakitcepit',
   },
 ];
 
@@ -53,8 +51,8 @@ const JAM_OPERASIONAL = [
 
 const colorMap: Record<string, string> = {
   emerald: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
-  blue: 'bg-blue-50 text-blue-700 ring-blue-200',
-  green: 'bg-green-50 text-green-700 ring-green-200',
+  rose: 'bg-rose-50 text-rose-700 ring-rose-200',
+  pink: 'bg-pink-50 text-pink-700 ring-pink-200',
   purple: 'bg-purple-50 text-purple-700 ring-purple-200',
 };
 
@@ -203,30 +201,35 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* CTA WhatsApp Banner */}
-      <section className="bg-gradient-to-r from-emerald-800 to-emerald-900 py-16">
+      {/* CTA Instagram Banner */}
+      <section className="bg-gradient-to-r from-rose-700 via-pink-700 to-purple-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <MessageCircle className="w-12 h-12 text-emerald-300 mx-auto mb-4" />
+            <Instagram className="w-12 h-12 text-pink-200 mx-auto mb-4" />
             <h2 className="text-3xl font-black text-white mb-3">
-              Ada pertanyaan? Chat kami langsung!
+              Ikuti kami di Instagram!
             </h2>
-            <p className="text-emerald-200 mb-8 max-w-xl mx-auto">
-              Tim kami siap membantu warga Dusun Cepit melalui WhatsApp. Respon cepat di hari kerja.
+            <p className="text-pink-100 mb-8 max-w-xl mx-auto">
+              Dapatkan info terkini seputar kegiatan warga, UMKM lokal, dan program dusun melalui akun Instagram kami.
             </p>
-            <a
-              href="https://wa.me/6281234567890?text=Halo%20admin%20Dusun%20Cepit%2C%20saya%20ingin%20bertanya..."
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-2xl font-black text-base transition-all shadow-2xl active:scale-95"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Chat via WhatsApp
-            </a>
+            <div className="flex flex-wrap justify-center gap-4">
+              {CONTACT_INFO.filter(c => c.href?.includes('instagram')).map(c => (
+                <a
+                  key={c.value}
+                  href={c.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-lg active:scale-95 border border-white/20"
+                >
+                  <Instagram className="w-4 h-4" />
+                  {c.value}
+                </a>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Navigation, Clock, Phone, Image as ImageIcon, Globe, Download, ZoomIn } from 'lucide-react';
+import { MapPin, Navigation, Clock, Image as ImageIcon, Globe, Download, ZoomIn, School, Building2, Landmark, ShieldAlert, UtensilsCrossed } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const MapPage = () => {
@@ -7,10 +7,15 @@ const MapPage = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const landmarks = [
-    { icon: Clock, label: 'Balai Dusun', desc: 'Pusat kegiatan administrasi dan kemasyarakatan' },
-    { icon: MapPin, label: 'Masjid Al-Hikmah', desc: 'Masjid utama warga Dusun Cepit' },
-    { icon: Navigation, label: 'Pos Kamling RT 01–03', desc: 'Pos keamanan lingkungan' },
-    { icon: Phone, label: 'Puskesmas Terdekat', desc: 'Fasilitas kesehatan terdekat dari dusun' },
+    { icon: MapPin, label: 'Masjid Al-Amin', desc: 'Rumah ibadah warga wilayah utara dusun' },
+    { icon: MapPin, label: 'Masjid Istiqomah', desc: 'Rumah ibadah warga wilayah selatan dusun' },
+    { icon: ShieldAlert, label: 'Pos Ronda RT 02', desc: 'Pos keamanan lingkungan RT 02' },
+    { icon: ShieldAlert, label: 'Pos Ronda RT 03 & 04', desc: 'Pos keamanan lingkungan RT 03 dan 04' },
+    { icon: School, label: 'Joglo PAUD', desc: 'Pendidikan anak usia dini warga Dusun Cepit' },
+    { icon: School, label: 'SLB Bhakti Pertiwi', desc: 'Sekolah Luar Biasa di lingkungan dusun' },
+    { icon: Building2, label: 'PT. MAK Yogyakarta', desc: 'Industri manufaktur alat kesehatan' },
+    { icon: Landmark, label: 'Candi Banyunibo', desc: 'Candi Buddha bersejarah di dekat dusun' },
+    { icon: UtensilsCrossed, label: 'Kandang Sato Iwen', desc: 'Program peternakan komunal warga dusun' },
   ];
 
   return (
@@ -37,22 +42,20 @@ const MapPage = () => {
         <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-fit">
           <button
             onClick={() => setViewMode('interactive')}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
-              viewMode === 'interactive' 
-                ? 'bg-white text-emerald-900 shadow-sm' 
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'interactive'
+                ? 'bg-white text-emerald-900 shadow-sm'
                 : 'text-slate-500 hover:text-emerald-700'
-            }`}
+              }`}
           >
             <Globe className="w-4 h-4" />
             Interaktif
           </button>
           <button
             onClick={() => setViewMode('infographic')}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
-              viewMode === 'infographic' 
-                ? 'bg-white text-emerald-900 shadow-sm' 
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'infographic'
+                ? 'bg-white text-emerald-900 shadow-sm'
                 : 'text-slate-500 hover:text-emerald-700'
-            }`}
+              }`}
           >
             <ImageIcon className="w-4 h-4" />
             Infografis
@@ -91,20 +94,20 @@ const MapPage = () => {
               className="relative w-full h-full flex flex-col items-center p-4 md:p-8"
             >
               <div className="relative group cursor-zoom-in max-w-4xl w-full" onClick={() => setIsZoomed(true)}>
-                <img 
-                  src="/peta-infografis.jpg" 
-                  alt="Infografis Peta Dusun Cepit" 
+                <img
+                  src="/peta-infografis.jpg"
+                  alt="Infografis Peta Dusun Cepit"
                   className="w-full h-auto rounded-xl shadow-lg border border-slate-200 transition-transform hover:scale-[1.01]"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center rounded-xl">
                   <ZoomIn className="text-white opacity-0 group-hover:opacity-100 w-10 h-10 drop-shadow-lg transition-opacity" />
                 </div>
               </div>
-              
+
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <a 
-                  href="/peta-infografis.jpg" 
-                  download 
+                <a
+                  href="/peta-infografis.jpg"
+                  download
                   className="flex items-center gap-2 bg-emerald-800 hover:bg-emerald-900 text-white px-8 py-3.5 rounded-2xl font-black transition-all active:scale-95 shadow-xl shadow-emerald-800/20"
                 >
                   <Download className="w-5 h-5" />
@@ -163,18 +166,18 @@ const MapPage = () => {
       {/* Lightbox Zoom */}
       <AnimatePresence>
         {isZoomed && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsZoomed(false)}
             className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
           >
-            <motion.img 
+            <motion.img
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
-              src="/peta-infografis.jpg" 
+              src="/peta-infografis.jpg"
               className="max-w-full max-h-full rounded-lg shadow-2xl"
             />
             <div className="absolute top-6 right-6 text-white font-bold bg-white/10 px-4 py-2 rounded-full backdrop-blur-md">

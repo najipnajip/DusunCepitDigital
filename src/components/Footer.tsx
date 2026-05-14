@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   MapPin,
   Mail,
-  Phone,
+  Instagram,
   Globe,
   ShieldCheck,
   FileText,
@@ -107,20 +107,35 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href={`mailto:${settings.email}`}
-                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
+                  href="https://instagram.com/tunas_mekar15"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-pink-400 transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-emerald-500 shrink-0" />
-                  {settings.email}
+                  <Instagram className="w-4 h-4 text-pink-500 shrink-0" />
+                  @tunas_mekar15
                 </a>
               </li>
               <li>
                 <a
-                  href={`tel:${settings.phone?.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
+                  href="https://instagram.com/mudamudicepit016"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-pink-400 transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-emerald-500 shrink-0" />
-                  {settings.phone}
+                  <Instagram className="w-4 h-4 text-pink-500 shrink-0" />
+                  @mudamudicepit016
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://instagram.com/merakitcepit"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-pink-400 transition-colors"
+                >
+                  <Instagram className="w-4 h-4 text-pink-500 shrink-0" />
+                  @merakitcepit
                 </a>
               </li>
             </ul>
