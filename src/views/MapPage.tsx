@@ -9,7 +9,7 @@ const MapPage = () => {
   const landmarks = [
     { icon: MapPin, label: 'Masjid Al-Amin', desc: 'Rumah ibadah warga wilayah utara dusun' },
     { icon: MapPin, label: 'Masjid Istiqomah', desc: 'Rumah ibadah warga wilayah selatan dusun' },
-    { icon: ShieldAlert, label: 'Pos Ronda RT 01', desc: 'Pos keamanan lingkungan RT 02' },
+    { icon: ShieldAlert, label: 'Pos Ronda RT 01', desc: 'Pos keamanan lingkungan RT 01' },
     { icon: ShieldAlert, label: 'Pos Ronda RT 02', desc: 'Pos keamanan lingkungan RT 02' },
     { icon: ShieldAlert, label: 'Pos Ronda RT 03 & 04', desc: 'Pos keamanan lingkungan RT 03 dan 04' },
     { icon: School, label: 'Joglo PAUD', desc: 'Pendidikan anak usia dini warga Dusun Cepit' },
