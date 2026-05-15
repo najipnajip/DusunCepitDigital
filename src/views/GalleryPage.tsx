@@ -143,32 +143,12 @@ const GalleryPage = () => {
             className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
           >
             {filtered.map((photo, i) => (
-              <motion.div
+              <GalleryItem
                 key={photo.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.05 }}
-                className="relative group cursor-pointer rounded-2xl overflow-hidden break-inside-avoid mb-4"
+                photo={photo}
+                index={i}
                 onClick={() => openLightbox(i)}
-              >
-                <img
-                  src={photo.image_url}
-                  alt={photo.title}
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
-                  <ZoomIn className="w-6 h-6 text-white mb-2 self-end" />
-                  <p className="text-white font-bold text-sm leading-tight">{photo.title}</p>
-                  {photo.description && (
-                    <p className="text-emerald-200 text-xs mt-1 line-clamp-2">{photo.description}</p>
-                  )}
-                  <span className="mt-2 text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-900/50 px-2.5 py-1 rounded-full w-fit">
-                    {photo.category}
-                  </span>
-                </div>
-              </motion.div>
+              />
             ))}
           </motion.div>
         )}
@@ -216,6 +196,10 @@ const GalleryPage = () => {
                 src={currentPhoto.image_url}
                 alt={currentPhoto.title}
                 className="w-full max-h-[75vh] object-contain rounded-2xl"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext fill='%2334d399' font-family='sans-serif' font-size='16' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E";
+                }}
               />
               <div className="mt-4 text-center">
                 <h3 className="text-white text-lg font-bold">{currentPhoto.title}</h3>
@@ -239,6 +223,69 @@ const GalleryPage = () => {
         )}
       </AnimatePresence>
     </div>
+  );
+};
+
+// ── Extracted gallery card to manage per-image loading state ──────────────────
+const GalleryItem = ({
+  photo,
+  index,
+  onClick,
+}: {
+  photo: GalleryPhoto;
+  index: number;
+  onClick: () => void;
+}) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.05 }}
+      className="relative group cursor-pointer rounded-2xl overflow-hidden break-inside-avoid mb-4 bg-slate-100"
+      onClick={onClick}
+      style={{ minHeight: '150px' }}
+    >
+      {/* Skeleton while loading */}
+      {!imgLoaded && !imgError && (
+        <div className="absolute inset-0 bg-slate-200 animate-pulse rounded-2xl" />
+      )}
+
+      {imgError ? (
+        <div className="w-full flex flex-col items-center justify-center py-12 text-slate-400 gap-2">
+          <Images className="w-8 h-8 text-slate-300" />
+          <p className="text-xs font-medium text-slate-400">Gambar tidak tersedia</p>
+          <p className="text-[10px] text-slate-300">Pastikan bucket Supabase bersifat Public</p>
+        </div>
+      ) : (
+        <img
+          src={photo.image_url}
+          alt={photo.title}
+          className={`w-full object-cover transition-all duration-500 group-hover:scale-110 ${
+            imgLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => {
+            setImgError(true);
+            setImgLoaded(true);
+          }}
+        />
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
+        <ZoomIn className="w-6 h-6 text-white mb-2 self-end" />
+        <p className="text-white font-bold text-sm leading-tight">{photo.title}</p>
+        {photo.description && (
+          <p className="text-emerald-200 text-xs mt-1 line-clamp-2">{photo.description}</p>
+        )}
+        <span className="mt-2 text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-900/50 px-2.5 py-1 rounded-full w-fit">
+          {photo.category}
+        </span>
+      </div>
+    </motion.div>
   );
 };
 

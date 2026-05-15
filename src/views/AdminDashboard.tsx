@@ -401,7 +401,21 @@ const AdminDashboard = () => {
                   <div key={item.id} className="bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 group">
                     <div className="relative aspect-square overflow-hidden">
                       {item.image_url ? (
-                        <img src={item.image_url} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" alt="" />
+                        <img
+                          src={item.image_url}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          alt=""
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none';
+                            const parent = (e.target as HTMLImageElement).parentElement;
+                            if (parent && !parent.querySelector('.img-err')) {
+                              const el = document.createElement('div');
+                              el.className = 'img-err w-full h-full flex flex-col items-center justify-center bg-rose-50 gap-2';
+                              el.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-rose-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/></svg><p class='text-[10px] text-rose-400 font-bold text-center px-2'>Bucket tidak public</p>`;
+                              parent.appendChild(el);
+                            }
+                          }}
+                        />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-slate-200">
                           <ImageIcon className="w-10 h-10 text-slate-400" />
@@ -549,6 +563,9 @@ const AdminDashboard = () => {
                     )}
                     <span className="text-slate-400 text-xs text-center">{uploadingGallery ? 'Mengupload foto...' : newGallery.image_url ? 'Foto terupload — klik untuk ganti' : 'Klik untuk pilih foto dari perangkat'}</span>
                   </div>
+                  <p className="text-[10px] text-amber-500 font-medium pl-2 mt-1">
+                    ⚠️ Pastikan bucket <span className="font-bold">images</span> di Supabase Storage sudah bersifat <span className="font-bold">Public</span> agar foto tampil di galeri.
+                  </p>
                 </div>
                 <div className="pt-4 flex gap-3">
                   <button type="button" onClick={() => setIsGalleryModalOpen(false)} className="flex-1 bg-slate-100 text-slate-500 py-4 rounded-xl font-bold">Batal</button>
