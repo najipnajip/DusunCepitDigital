@@ -32,8 +32,8 @@ const FALLBACK_PROFILE: VillageProfile = {
     { name: 'Sendy Prasetyo', role: 'Ketua Karang Taruna RW 15' },
     { name: 'Luthfi', role: 'Ketua Karang Taruna RW 16' }
   ],
-  heroImage: 'https://picsum.photos/seed/village-aerial/1920/600',
-  historyImage: 'https://picsum.photos/seed/old-village/800/600',
+  heroImage: '/profile.webp',
+  historyImage: '/PaEko.jpg',
 };
 
 const ProfilePage = () => {
