@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Camera, X, ChevronLeft, ChevronRight, ZoomIn, Images } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -8,7 +8,6 @@ const CATEGORIES = ['Semua', 'Kegiatan', 'Infrastruktur', 'Sosial', 'Alam', 'Lai
 
 const GalleryPage = () => {
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
-  const [filtered, setFiltered] = useState<GalleryPhoto[]>([]);
   const [activeCategory, setActiveCategory] = useState('Semua');
   const [loading, setLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -16,14 +15,6 @@ const GalleryPage = () => {
   useEffect(() => {
     fetchPhotos();
   }, []);
-
-  useEffect(() => {
-    if (activeCategory === 'Semua') {
-      setFiltered(photos);
-    } else {
-      setFiltered(photos.filter((p) => p.category === activeCategory));
-    }
-  }, [activeCategory, photos]);
 
   const fetchPhotos = async () => {
     setLoading(true);
@@ -35,6 +26,12 @@ const GalleryPage = () => {
     if (error) console.error('[Gallery] Error fetching:', error.message);
     setLoading(false);
   };
+
+  // Calculate filtered photos on the fly to avoid state sync issues
+  const filtered = useMemo(() => {
+    if (activeCategory === 'Semua') return photos;
+    return photos.filter((p) => p.category === activeCategory);
+  }, [activeCategory, photos]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -128,29 +125,21 @@ const GalleryPage = () => {
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex flex-col items-center justify-center py-32 text-slate-400"
-          >
+          <div className="flex flex-col items-center justify-center py-32 text-slate-400">
             <Images className="w-20 h-20 mb-6 text-slate-200" />
             <p className="text-xl font-bold text-slate-300">Belum ada foto</p>
             <p className="text-sm mt-2">Foto kegiatan akan ditampilkan di sini.</p>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div
-            layout
-            className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
-          >
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {filtered.map((photo, i) => (
               <GalleryItem
                 key={photo.id}
                 photo={photo}
-                index={i}
                 onClick={() => openLightbox(i)}
               />
             ))}
-          </motion.div>
+          </div>
         )}
       </section>
 
@@ -226,52 +215,33 @@ const GalleryPage = () => {
   );
 };
 
-// ── Extracted gallery card to manage per-image loading state ──────────────────
 const GalleryItem = ({
   photo,
-  index,
   onClick,
 }: {
   photo: GalleryPhoto;
-  index: number;
   onClick: () => void;
 }) => {
-  const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.05 }}
+    <div
       className="relative group cursor-pointer rounded-2xl overflow-hidden break-inside-avoid mb-4 bg-slate-100"
       onClick={onClick}
       style={{ minHeight: '150px' }}
     >
-      {/* Skeleton while loading */}
-      {!imgLoaded && !imgError && (
-        <div className="absolute inset-0 bg-slate-200 animate-pulse rounded-2xl" />
-      )}
-
       {imgError ? (
         <div className="w-full flex flex-col items-center justify-center py-12 text-slate-400 gap-2">
-          <Images className="w-8 h-8 text-slate-300" />
+          <ZoomIn className="w-8 h-8 text-slate-300" />
           <p className="text-xs font-medium text-slate-400">Gambar tidak tersedia</p>
-          <p className="text-[10px] text-slate-300">Pastikan bucket Supabase bersifat Public</p>
+          <p className="text-[10px] text-slate-300 font-bold">Bucket Private?</p>
         </div>
       ) : (
         <img
           src={photo.image_url}
           alt={photo.title}
-          className={`w-full object-cover transition-all duration-500 group-hover:scale-110 ${
-            imgLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setImgLoaded(true)}
-          onError={() => {
-            setImgError(true);
-            setImgLoaded(true);
-          }}
+          className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={() => setImgError(true)}
         />
       )}
 
@@ -285,7 +255,7 @@ const GalleryItem = ({
           {photo.category}
         </span>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

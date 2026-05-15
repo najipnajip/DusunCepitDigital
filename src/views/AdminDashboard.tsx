@@ -46,7 +46,7 @@ const AdminDashboard = () => {
   const [newNews, setNewNews] = useState<Partial<NewsItem>>({
     title: '', category: 'Sorotan Utama',
     date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
-    excerpt: '', image: ''
+    excerpt: '', image: '', content: ''
   });
   const [newGallery, setNewGallery] = useState<Partial<GalleryPhoto>>({
     title: '', category: 'Kegiatan', description: '', image_url: ''
@@ -144,7 +144,7 @@ const AdminDashboard = () => {
     if (err) { alert('Gagal simpan berita: ' + err.message); return; }
     setIsNewsModalOpen(false);
     setEditingNewsId(null);
-    setNewNews({ title: '', category: 'Sorotan Utama', date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), excerpt: '', image: '' });
+    setNewNews({ title: '', category: 'Sorotan Utama', date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), excerpt: '', image: '', content: '' });
     fetchData();
   };
 
@@ -156,7 +156,7 @@ const AdminDashboard = () => {
 
   const openAddNewsModal = () => {
     setEditingNewsId(null);
-    setNewNews({ title: '', category: 'Sorotan Utama', date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), excerpt: '', image: '' });
+    setNewNews({ title: '', category: 'Sorotan Utama', date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), excerpt: '', image: '', content: '' });
     setIsNewsModalOpen(true);
   };
 
@@ -486,6 +486,10 @@ const AdminDashboard = () => {
                 <div className="space-y-1">
                   <label className="text-[10px] font-black text-slate-400 uppercase pl-2">Deskripsi Singkat</label>
                   <textarea required rows={3} value={newNews.excerpt} onChange={e => setNewNews({...newNews, excerpt: e.target.value})} className="w-full bg-slate-50 border-none rounded-xl py-3 px-4 text-sm" placeholder="Ringkasan berita..." />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black text-slate-400 uppercase pl-2">Isi Berita Lengkap</label>
+                  <textarea rows={6} value={newNews.content || ''} onChange={e => setNewNews({...newNews, content: e.target.value})} className="w-full bg-slate-50 border-none rounded-xl py-3 px-4 text-sm" placeholder="Tulis isi berita lengkap di sini..." />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
